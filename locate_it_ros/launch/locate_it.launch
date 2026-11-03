@@ -1,0 +1,19 @@
+<launch>
+
+    <node pkg="locate_it_ros"
+          type="video_publisher.py"
+          name="video_publisher"
+          output="screen">
+
+        <param name="video_path"
+               value="$(find locate_it_ros)/videos/diamond.mp4"/>
+
+    </node>
+
+    <node pkg="locate_it_ros"
+          type="locate_it_node.py"
+          name="locate_it_node"
+          output="screen"/>
+
+</launch>
+
