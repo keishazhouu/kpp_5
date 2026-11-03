@@ -1,0 +1,25 @@
+<launch>
+    <arg name="video_path"
+         default="$(find how_colorful_ros)/videos/Lucky Charms Diamond Dancers.mp4"/>
+
+    <node pkg="how_colorful_ros"
+          type="video_publisher.py"
+          name="how_colorful_video_publisher"
+          output="screen">
+        <param name="video_path" value="$(arg video_path)"/>
+        <param name="image_topic" value="/camera/image_raw"/>
+        <param name="output_width" value="960"/>
+        <param name="loop" value="true"/>
+    </node>
+
+    <node pkg="how_colorful_ros"
+          type="how_colorful_node.py"
+          name="how_colorful_node"
+          output="screen">
+        <param name="image_topic" value="/camera/image_raw"/>
+        <param name="output_topic" value="/how_colorful/segmented_image"/>
+        <param name="step" value="16"/>
+        <param name="csv_path" value="$(env HOME)/color_statistics.csv"/>
+    </node>
+</launch>
+

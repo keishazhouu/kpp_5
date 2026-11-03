@@ -1,13 +1,17 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>where_are_the_shapes</name>
+  <name>how_colorful_ros</name>
   <version>0.1.0</version>
-  <description>Real-time 2D shape detection using OpenCV and ROS Noetic.</description>
+  <description>Color quantization and dominant color segmentation using OpenCV and ROS Noetic.</description>
   <maintainer email="student@example.com">Student</maintainer>
   <license>MIT</license>
+
   <buildtool_depend>catkin</buildtool_depend>
+
   <depend>rospy</depend>
+  <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>cv_bridge</depend>
+
   <export/>
 </package>
