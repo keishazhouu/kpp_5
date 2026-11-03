@@ -1,0 +1,24 @@
+<launch>
+    <arg name="video_path"
+         default="$(find i_dont_think_its_reliable)/noisy_mask.mp4"/>
+
+    <node pkg="i_dont_think_its_reliable"
+          type="video_publisher.py"
+          name="reliable_video_publisher"
+          output="screen">
+        <param name="video_path" value="$(arg video_path)"/>
+        <param name="image_topic" value="/reliable/image_raw"/>
+        <param name="output_width" value="960"/>
+        <param name="loop" value="true"/>
+    </node>
+
+    <node pkg="i_dont_think_its_reliable"
+          type="reliable_node.py"
+          name="reliable_node"
+          output="screen">
+        <param name="image_topic" value="/reliable/image_raw"/>
+        <param name="output_topic" value="/reliable/cleaned_mask"/>
+        <param name="threshold" value="127"/>
+        <param name="csv_path" value="$(env HOME)/mask_statistics.csv"/>
+    </node>
+</launch>
