@@ -1,0 +1,22 @@
+<launch>
+  <arg name="video" default="$(env HOME)/Videos/shape_detection_static.mp4"/>
+  <arg name="loop" default="false"/>
+  <arg name="width" default="960"/>
+
+  <node pkg="where_are_the_shapes" type="video_publisher.py"
+        name="shape_video_publisher" output="screen">
+    <param name="video_path" value="$(arg video)"/>
+    <param name="image_topic" value="/shapes/image_raw"/>
+    <param name="output_width" value="$(arg width)"/>
+    <param name="loop" value="$(arg loop)"/>
+  </node>
+
+  <node pkg="where_are_the_shapes" type="shape_detector.py"
+        name="shape_detector" output="screen">
+    <param name="image_topic" value="/shapes/image_raw"/>
+    <param name="min_area" value="700"/>
+    <param name="max_saturation" value="75"/>
+    <param name="min_value" value="70"/>
+    <param name="show_window" value="true"/>
+  </node>
+</launch>
